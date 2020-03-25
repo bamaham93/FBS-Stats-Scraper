@@ -59,9 +59,18 @@ for i in range(len(team_full_urls)):
 t= 0 
 p = 0
 q= 66
+
+end_result = []
+
 for i in team_names:
-  print(team_names[t])
-  print(stats[p:q])
+  names_and_stats = []
+  names_and_stats.append(team_names[t])
+  names_and_stats.append(stats[p:q])
+  #print(team_names[t])
+  #print(stats[p:q])
+  end_result.append(names_and_stats)
   t += 1
   p += 66
   q += 66
+
+print(end_result)
