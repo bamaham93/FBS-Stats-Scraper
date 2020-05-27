@@ -42,7 +42,8 @@ class Scraper:
     try:
       loc.status_code # loc is the callable object requests module creates, i.e. index_page_soup
       if loc.status_code == 200:
-        print('Connected')
+        #print('Connected')
+        pass
       if loc.status_code != 200:
         print('Page Connection Error')
     except:
@@ -119,7 +120,17 @@ df = pd.DataFrame(list_of_lists)
 df.drop(columns=[1, 3, 4, 7, 9, 10, 11, 15, 17, 18, 19, 23, 25, 27, 28, 29, 35, 37, 38, 41, 43, 44, 45, 49, 51, 52, 53, 57, 59, 60, 63, 64, 65], axis=1, inplace=True)
 df.columns = ['Team', 'Scoring: Pts/Game', 'Scoring: Games', 'Scoring: Points','First Downs: Total', 'First Downs: Rushing', 'First Downs: Passing', 'First Downs: By Penalty', 'Rushing Yards/Attempt', 'Rushing: Attempts', 'Rushing: Yards', 'Rushing: TDs', 'Passing: Rating', 'Passing: Yards', 'Passing: Attempts', 'Passing: Completions', 'Passing: Interceptions', 'Passing: TDs', 'Total Offense:  Yrds/Play', 'Punt Returns: Yards/Return', ' Punt Returns: Returns', 'Punt Returns: Yards', 'Punt Returns: TDs', 'Kickoff Returns: Yards/Return', 'Kickoff Returns: Returns', 'Kickoff Returns: Yards', 'Kickoff Returns: TDs', 'Kickoff Returns:', 'Punting: Yards/Punt', 'Punting: Punts', 'Punting: Yards', 'Interceptions: Returns', 'Interceptions: Yards', 'Interceptions: TDs']
 
-df.head()
+#df.head() # For troubleshooting
 
-#@title Convert data to CSV
-df.to_csv()
+#@title Convert data to CSV and write to file
+
+csv_string = df.to_csv()
+
+f = open("FBSstats.csv", "w")
+f.write(csv_string)
+f.close()
+
+#@title Download File
+from google.colab import files
+
+files.download('FBSstats.csv')
