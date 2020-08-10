@@ -11,6 +11,7 @@ This tool uses BeautifulSoup4 to scrape CFBstats.com to obtain NCAA Div. Ia foot
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import time
 
 
 class Scraper:
@@ -44,6 +45,7 @@ team_names = []
 
 #team names only, prints team names to a list
 team_index_soup = Scraper.soup_recipe('http://cfbstats.com/2019/team/index.html')
+	time.sleep(0.25)
 conference_list = team_index_soup.find_all('div',class_='conference')
 for conference in conference_list:
 	conference_team_list = conference.find_all('li')
